@@ -1,1 +1,1 @@
-# graphql-react
+# Persons list graphql-react
