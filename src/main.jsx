@@ -9,9 +9,19 @@ import {
   InMemoryCache,
 } from "@apollo/client";
 
+const getAuth = () => {
+  const token = localStorage.getItem("phonenumbers-user-token");
+  console.log("token", token);
+  return token ? `bearer ${token}` : null;
+};
 const client = new ApolloClient({
   cache: new InMemoryCache(),
-  link: new HttpLink({ uri: "http://localhost:4000" }),
+  link: new HttpLink({
+    headers: {
+      authorization: getAuth(),
+    },
+    uri: "http://localhost:4000",
+  }),
 });
 
 ReactDOM.createRoot(document.getElementById("root")).render(
